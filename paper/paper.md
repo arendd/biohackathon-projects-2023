@@ -1,114 +1,379 @@
 ---
-title: 'BioHackEU23 report: Template for the very long title'
-title_short: 'BioHackEU23 #26: unknown chemical substances'
+title: 'Bioschemas Resource Index for Chem and Plants'
+title_short: 'Bioschemas Resource Index for Chem and Plants'
 tags:
-  - cheminformatics
-  - PubChem
-  - unknown chemical substances
+  - Bioschemas
+  - Structured markup
+  - Schema.org
+  - RDF
+  - Knowledge graph
+  - SPARQL
 authors:
-  - name: First Author
+  - name: Daniel Arend
+    orcid: 0000-0002-2455-5938
     affiliation: 1
-  - name: Last Author
-    orcid: 0000-0000-0000-0000
-    affiliation: 2
+  - name: Marco Brandizi
+    affiliation: 1
+  - name: Alessio Del Conte  
+    orcid: 0000-0002-8052-3519
+    affiliation: 3
+  - name: Manuel Feser
+    orcid: 0000-0001-6546-1818
+    affiliation: 1
+  - name: Yojana Gadiya
+    affiliation: 12, 13
+    orcid: 0000-0002-7683-0452
+  - name: Alban Gaignard
+    affiliation: 1
+  - name: Leyla Jael Castro
+    orcid: 0000-0003-3986-0510
+    affiliation: 4
+  - name: Ivan Mičetić
+    orcid: 0000-0003-1691-8425
+    affiliation: 3
+  - name: Sebastien Moretti
+    orcid: 0000-0003-3947-488X
+    affiliation: 7,8
+  - name: Steffen Neumann
+    orcid: 0000-0002-7899-7192
+    affiliation: 5,6
+  - name: Noura Rayya
+    affiliation: 1
+  - name: Claire Rioualen
+    affiliation: 1
+  - name: Martina Summer-Kutmon
+    affiliation: 1
+  - name: Ginger Tsueng
+    orcid: 0000-0001-9536-9115
+    affiliation: 10
+  - name: Egon Willighagen
+    orcid: 0000-0001-7542-0286
+    affiliation: 9
+  - name: Ulrike Wittig
+    orcid: 0000-0002-9077-5664
+    affiliation: 11
 affiliations:
-  - name: First Affiliation
+  - name: Leibniz Institute for Plant Genetics and Crop Plant Research (IPK) Gatersleben, Germany
     index: 1
   - name: Second Affiliation
     index: 2
+  - name: Department of Biomedical Sciences, University of Padua
+    index: 3
+  - name: ZB MED Information Centre for Life Sciences
+    index: 4    
+  - name: Leibniz Institute of Plant Biochemistry (IPB)
+    index: 5
+  - name: German Centre for Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig
+    index: 6
+  - name: SIB Swiss Institute of Bioinformatics, Vital-IT group, Lausanne
+    index: 7
+  - name: Department of Ecology and Evolution, University of Lausanne
+    index: 8
+  - name: Department of Bioinformatics - BiGCaT, NUTRIM, Maastricht University
+    index: 9
+  - name: The Scripps Research Institute
+    index: 10
+  - name: Heidelberg Institute for Theoretical Studies, Heidelberg, Germany
+    index: 11
+  - name: Fraunhofer Institute for Translational Medicine and Pharmacology, Germany
+    index: 12
+  - name: Bonn-Aachen International Center for Information Technology (B-IT), University of Bonn, 53113 Bonn, Germany
+    index: 13
 date: 8 November 2023
 cito-bibliography: paper.bib
 event: BH23EU
 biohackathon_name: "BioHackathon Europe 2023"
 biohackathon_url:   "https://biohackathon-europe.org/"
 biohackathon_location: "Barcelona, Spain, 2023"
-group: Project 26
+group: Project 7
 # URL to project git repo --- should contain the actual paper.md:
-git_url: https://github.com/biohackrxiv/publication-template
+git_url: https://github.com/arendd/biohackathon-projects-2023
 # This is the short authors description that is used at the
 # bottom of the generated paper (typically the first two authors):
-authors_short: First Author \emph{et al.}
+authors_short: Daniel Arend \emph{et al.} **all authors are in alphabetical order**
 ---
-
-
 # Introduction
+As part of the BioHackathon Europe 2023, we here report on the progress of the hacking team preparing a resource index and knowledge graph based on the JSON-LD Bioschemas markup from several resources in the life- and natural sciences, predominantly from the fields of plant- and (bio)chemistry research. This preliminary analysis will allow us to better understand how Bioschemas markup is currently used in these two communities, so we can take actions to improve guidelines and validation on the Bioschemas side, and markup and the data providers side. The lessons learnt will be useful for other communities as well. The ultimate goal is facilitating and improving interoperability across resources. 
 
-As part of the BioHackathon Europe 2023, we here report...
+<!-- Guha_2016 is doi:10.1145/2844544 -->
 
-# Formatting
+[Bioschemas](https://bioschemas.org/)[@citesAsAuthority:Gray_2017] is a community-based effort providing specifications, tools and training on how to add structured markup on webpages in Life Sciences. It builds on top of [schema.org](https://schema.org/) [@usesMethodIn:Guha_2016] by providing new types and profiles relevant for Life Sciences, i.e., type usage recommendations, useful to describe Life Sciences concepts (e.g., taxa or chemicals) but also and research outcomes in general (e.g., datasets or software). Although Bioschemas main aim is to facilitate findability, it also provides an initial interoperability layer. 
 
-This document use Markdown and you can look at [this tutorial](https://www.markdowntutorial.com/).
+The JSON-LD from multiple resources can be imported into either central or distributed SPARQL endpoints to provide queries against multiple data sources. While incorporating Bioschemas markup to a resource is fairly lightweight, adding and maintaining a SPARQL endpoint to a resource can be challenging. 
 
-## Subsection level 2
+This project builds upon previous work done by the [Intrinsically Disordered Protein (IDP)](https://elixir-europe.org/communities/intrinsically-disordered-proteins) Community in aggregating Bioschemas markup and constructing the IDP knowledge graph, which served as the basis for the IDPcentral registry ([@citesAsAuthority:Gray_2022], [@citesAsAuthority:Gray_2021], [@citesAsAuthority:Ammar_2022]). During these efforts, we used different approaches for data integration, but always based on Bioschemas implementation from one provider. In the project reported here, we are using the JSON-LD from different providers with their own Bioschemas implementations.
 
-Please keep sections to a maximum of only two levels.
+# Material and Methods
 
-## Tables and figures
+The following is a brief introduction of the components, linked data sources and analysis approaches we used. 
 
-Tables can be added in the following way, though alternatives are possible:
+## Knowledge Graphs
 
-Table: Note that table caption is automatically numbered and should be
-given before the table itself.
+We used both local developer instances and a publicly accessible demo site hosted in a cloud-based virtual machine. A public instance of GraphDB with the Chem and Plants knowledge graph is available at knowledge.ipk-gatersleben.de (login/password: demo/demo).
 
-| Header 1 | Header 2 |
-| -------- | -------- |
-| item 1 | item 2 |
-| item 3 | item 4 |
+## Data Sources
 
-A figure is added with:
+We initially agreed on extracting reduced file dumps containing Bioschemas markup formatted as JSON-LD for six selected repositories or databases. During the week at the BioHackathon we were able to get in touch with other people interested in this project and add an additional resource to our set. Subsequently, the seven different resource are shortly described. 
 
-![Caption for BioHackrXiv logo figure](./biohackrxiv.png)
+### Coconut
 
-# Other main section on your manuscript level 1
+### e!DAL-PGP
+The e!DAL-PGP (Plant Genomics and Phenomics Research Data Repository) is an infrastructure to comprehensively publish plant research data. This covers in particular cross-domain datasets that are not being published in central repositories because of its volume or unsupported data scope, like image collections from plant phenotyping and microscopy, unfinished genomes, genotyping data, visualizations of morphological plant models, data from mass spectrometry as well as software and documents. All published datasets are accessible via a DOI linking to a dedicated content page, which embeds a schema.org and BioSchema markup in the HTML code. Currently, it supports the `Dataset` and `Taxon` profiles.
 
-Lists can be added with:
+### MassBank
+MassBank [@citesAsAuthority:Horai_2010] is an open spectral database that provides mass spectral data records. Bioschemas markup is embedded in the rendered HTML pages of individual records. MassBank has been supporting Bioschemas markup for the individual records as `Dataset` and `MolecularEntity` since 2018, and recently switched to use `ChemicalSubstance`. The records are hosted on GitHub and released regularly [https://github.com/MassBank/MassBank-data/releases]. A datadump of the JSON-LD information is part of the data releases. 
 
-1. Item 1
-2. Item 2
+### MetaNetX
+MetaNetX [@citesAsAuthority:Moretti_2021] is an open resource unifying metabolites and biochemical reactions, in the context of metabolic models, in a common namespace. MetaNetX provides bioschemas markup for each metabolite record as `MolecularEntity` with structural information (i.e. InChI, SMILES and InChIKey) and cross-references. A SPARQL endpoint is also available. A datadump of the JSON-LD information is part of the data releases.
 
-# Citation Typing Ontology annotation
+### nmrXiv
 
-You can use [CiTO](http://purl.org/spar/cito/2018-02-12) annotations, as explained in [this BioHackathon Europe 2021 write up](https://raw.githubusercontent.com/biohackrxiv/bhxiv-metadata/main/doc/elixir_biohackathon2021/paper.md) and [this CiTO Pilot](https://www.biomedcentral.com/collections/cito).
-Using this template, you can cite an article and indicate _why_ you cite that article, for instance DisGeNET-RDF [@citesAsAuthority:Queralt2016].
+### WikiPathways
+WikiPathways already used Bioschemas on their website and modelled each pathway as a `Dataset` [@citesAsDataSource:citesAsAuthority:Agrawal_2023]. Genes, proteins, and metabolites 
+were added as keywords. Here, we extended the new `libGPML` library (https://github.com/PathVisio/libGPML) with a Java-based method to convert a WikiPathways GPML file into
+Bioschemas, taking advantage of the `org.json` library. This generated JSON-LD adds a `Taxon` resource, as well as `BioChemEntity`
+resources for genes, `Protein` for proteins, and `MolecularEntity` for the small molecules. The code is made available at
+https://github.com/BiGCAT-UM/org.pathvisio.io.bioschemas.
 
-The syntax in Markdown is as follows: a single intention annotation looks like
-`[@usesMethodIn:Krewinkel2017]`; two or more intentions are separated
-with colons, like `[@extends:discusses:Nielsen2017Scholia]`. When you cite two
-different articles, you use this syntax: `[@citesAsDataSource:Ammar2022ETL; @citesAsDataSource:Arend2022BioHackEU22]`.
-
-Possible CiTO typing annotation include:
-
-* citesAsDataSource: when you point the reader to a source of data which may explain a claim
-* usesDataFrom: when you reuse somehow (and elaborate on) the data in the cited entity
-* usesMethodIn
-* citesAsAuthority
-* citesAsEvidence
-* citesAsPotentialSolution
-* citesAsRecommendedReading
-* citesAsRelated
-* citesAsSourceDocument
-* citesForInformation
-* confirms
-* documents
-* providesDataFor
-* obtainsSupportFrom
-* discusses
-* extends
-* agreesWith
-* disagreesWith
-* updates
-* citation: generic citation
-
+### SABIO-RK
+SABIO-RK [@citesAsDataSource:citesAsAuthority:Wittig_2018] is a manually curated database for biochemical reactions and their kinetic properties. Each database entry represents kinetic parameters for a biochemical reaction including reaction participants (e.g. substrates, products, enzymes) in a biological source (e.g. organism, tissue, cell location) under specific experimental conditions (e.g. pH, temperature). SABIO-RK provides Bioschemas markup for each database entry. 
 
 # Results
+## JSON-LD datadumps
+JSON-LD datadumps were prepared for a selection of databases from the plant science and (bio-)chemistry domains. 
 
+ | Resource     | Description                                                               | Import as named graph            | File                                 |
+|--------------|---------------------------------------------------------------------------|----------------------------------|--------------------------------------|
+| [Coconut](https://coconut.naturalproducts.net/)      | Database of natural products                                              | https://biohack2023/coconut      | [coconut.ttl](coconut.ttl)           |
+| [e!DAL-PGP](https://edal-pgp.ipk-gatersleben.de/)     | e!DAL - Plant Genomics & Phenomics Research Data Repository               | https://biohack2023/edal         | [edal.ttl](edal.ttl)                 |
+| [MassBank](https://massbank.eu/)     | Mass spectra database                                                     | https://biohack2023/massbank     | [massbank.ttl](massbank.ttl)         |
+| [MetaNetX](https://www.metanetx.org/)     | Platform for genome annotation and large-scale metabolic network analysis | https://biohack2023/metanetx     | [metanetx.ttl](metanetx.ttl)         |
+| [nmrXiv](https://nmrxiv.org/)       | NMR spectroscopy data repository                                          | https://biohack2023/nmrxiv       | [nmrxiv.ttl](nmrxiv.ttl)             |
+| [WikiPathways](https://www.wikipathways.org/)| Platform for biological pathways                                          | https://biohack2023/wikipathways | [wikipathways.ttl](wikipathways.ttl) |
+| [SABIO-RK](https://sabiork.h-its.org/) | Biochemical Reaction Kinetics Database | https://biohack2023/sabio-rk | [sabio-rk.ttl](sabio-rk.ttl) |
+
+## Example SPARQL queries for Chem and Plants KG:
+
+Here there are some examples queries to the chem and plants knowledge graph making use of the connection between both data domains.
+
+#### Which resources mention the compound caffeine?
+```sparql
+PREFIX schema: <http://schema.org/>
+SELECT ?resource WHERE {
+    GRAPH ?resource {
+		?entry schema:inChIKey ?key .
+    }
+    BIND("RYYVLZVUVIJVGH-UHFFFAOYSA-N" as ?caffeineChIKey)
+    FILTER (?key = ?caffeineChIKey)
+} 
+LIMIT 100 
+```
+#### Count the number of entries per resource talking about caffeine:
+```sparql
+PREFIX schema: <http://schema.org/>
+SELECT ?resource (COUNT(?entry) as ?entriesAboutCoffe) WHERE {
+    GRAPH ?resource {
+		?entry schema:inChIKey ?key .
+    }
+    BIND("RYYVLZVUVIJVGH-UHFFFAOYSA-N" as ?caffeineChIKey)
+    FILTER (?key = ?caffeineChIKey)
+} 
+GROUP BY ?resource
+LIMIT 100
+```
+#### List chemical pathways in plants:
+```sparql
+PREFIX biohack23: <https://biohack2023/>
+PREFIX schema: <http://schema.org/>
+PREFIX up: <http://purl.uniprot.org/core/>
+PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT  ?pathway ?organismName 
+WHERE {
+    GRAPH biohack23:wikipathways {
+        ?pathway a schema:Dataset ;
+                 schema:taxonomicRange ?taxon .
+    }
+    {
+        SELECT DISTINCT ?taxon ?organismName ?commonName ?ncbiURI
+        WHERE {
+            {
+                SELECT distinct ?taxon ?ncbiURI
+                WHERE {
+                    GRAPH biohack23:wikipathways {
+                        ?x schema:taxonomicRange ?taxon .
+                        BIND(STRAFTER(STR(?taxon), "_") AS ?ncbi)
+                        BIND(URI(CONCAT("http://purl.uniprot.org/taxonomy/" ,?ncbi)) AS ?ncbiURI)
+                    }
+                } 
+            }
+            SERVICE <https://sparql.uniprot.org/sparql> {
+                ?ncbiURI up:scientificName ?organismName ;
+                         up:commonName ?commonName .
+                # Taxon subclasses are materialized, do not use rdfs:subClassOf+
+                FILTER EXISTS {
+                    ?ncbiURI rdfs:subClassOf taxon:33090 .
+                }
+            }
+        }
+    }
+}
+```
+#### List compounds per plant pathway:
+```sparql
+PREFIX biohack23: <https://biohack2023/>
+PREFIX schema: <http://schema.org/>
+PREFIX up: <http://purl.uniprot.org/core/>
+PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT ?pathway ?organismName ?molecule 
+WHERE {
+    GRAPH biohack23:wikipathways {
+        ?pathway a schema:Dataset ;
+                 schema:taxonomicRange ?taxon .
+        ?molecule a schema:MolecularEntity ;
+                  schema:includedInDataset ?pathway .
+    }
+    {
+        SELECT DISTINCT ?taxon ?organismName ?commonName ?ncbiURI
+        WHERE {
+            {
+                SELECT distinct ?taxon ?ncbiURI
+                WHERE {
+                    GRAPH biohack23:wikipathways {
+                        ?x schema:taxonomicRange ?taxon .
+                        BIND(STRAFTER(STR(?taxon), "_") AS ?ncbi)
+                        BIND(URI(CONCAT("http://purl.uniprot.org/taxonomy/" ,?ncbi)) AS ?ncbiURI)
+                    }
+                } 
+            }
+            SERVICE <https://sparql.uniprot.org/sparql> {
+                ?ncbiURI up:scientificName ?organismName ;
+                         up:commonName ?commonName .
+                # Taxon subclasses are materialized, do not use rdfs:subClassOf+
+                FILTER EXISTS {
+                    ?ncbiURI rdfs:subClassOf taxon:33090 .
+                }
+            }
+        }
+    }
+}
+```
+#### Molecular entities in pathways of plant resources
+```sparql
+PREFIX biohack23: <https://biohack2023/>
+PREFIX schema: <http://schema.org/>
+PREFIX up: <http://purl.uniprot.org/core/>
+PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT ?pathway ?organismName ?molecule ?resource ?property ?object
+WHERE {
+    GRAPH biohack23:wikipathways {
+        ?pathway a schema:Dataset ;
+                 schema:taxonomicRange ?taxon .
+        ?molecule a schema:MolecularEntity ;
+                  schema:inChIKey ?key ;
+                  schema:includedInDataset ?pathway .
+    }
+    {
+        SELECT DISTINCT ?taxon ?organismName ?commonName ?ncbiURI
+        WHERE {
+            {
+                SELECT distinct ?taxon ?ncbiURI
+                WHERE {
+                    GRAPH biohack23:wikipathways {
+                        ?x schema:taxonomicRange ?taxon .
+                        BIND(STRAFTER(STR(?taxon), "_") AS ?ncbi)
+                        BIND(URI(CONCAT("http://purl.uniprot.org/taxonomy/" ,?ncbi)) AS ?ncbiURI)
+                    }
+                } 
+            }
+            SERVICE <https://sparql.uniprot.org/sparql> {
+                ?ncbiURI up:scientificName ?organismName ;
+                         up:commonName ?commonName .
+                FILTER EXISTS {
+                    ?ncbiURI rdfs:subClassOf taxon:33090 .
+                }
+            }
+        }
+    }
+    {
+        {
+            GRAPH ?resource {
+                ?x schema:inChIKey ?key ;
+                   ?property ?object .
+            }
+        } MINUS {
+            GRAPH biohack23:wikipathways {
+                ?x schema:inChIKey ?key .
+            }
+        }
+    }
+}
+```
+
+## Capturing information from Controlled Vocabularies
+
+Some of the resources we indexed and imported into the knowledge graph make use of the `DefinedTerm` schema.org type to reference and re-use controlled vocabulary and ontology terms. While technically it is sufficient to include `"@type": "DefinedTerm"` and an IRI as `@id`, presenting any human readable information requires to visit or import possibly multiple controlled vocabulary lists or ontologies. 
+
+We conducted surveys based on the list of `exampleURL` on the Bioschemas Live-deploys page (https://bioschemas.org/developer/liveDeploys). Based on the results of the survey, we proposed two new profiles to help normalize and enable proper capture for this field, i.e., in future endeavors. 
+
+Additionally, there may be controlled vocabularies in use that are not formalized into an ontology. In such cases, there may not be a suitable IRI and additional information would be needed. For example, the ClinicalTrials.gov's Protocol Registration and Results System (PRS) Schema has controlled vocabulary used as values for many properties in their own codebook, but these terms are not necessarily in a formal ontology. In this case, it is important to leverage the `DefinedTermSet` profile to ensure sufficient information is included for provenance.
+
+# Howto
+> [name=Daniel Arend]
+> Ivan / Alessio could you please insert the short guideline / howto you mentioned ? And the docker setup...
 
 # Discussion
 
-...
+After the first sessions during the hackathon, it was quite early clear, that the initial idea of extracting datadumps with schema.org and BioSchema markup and feed them into a graph database was very optimistic. It became visible, that the specifications are interpreted in many different ways, which results in low or even no interoperability between actual connected datasets. 
 
-## Acknowledgements
+We spend a lot of time in curating the datadumps and add additional properties or modify existing one to create connections between datasets otherwise it is not possible to show an initial level of interoperability. As a general recommendation that can be derived from this is to always use the proper `@id` attributes and complement with `@sameAs` attributes to all other possible identifiers. In fact, `@id` attribute is considered a minimum attribute while `@sameAs` a recommended one in Bioschemas profiles.
 
-...
+# Outlook
 
-## References
+Beside the extraction and curation of the resource datadumps, we also drafted a howto explaining the set-up of a local instance of a graph database and how to equip it with datadumps based on schema.org / BioSchemas. We will get in touch with the editors of RDMKit and FAIR Cookbook to evaluate if this is valuable for writing an entry [@citesAsPotentialSolution:Rocca2023FAIR]. Another interesting idea for future work and to get more out of the developed knowledge graphs is using synergies from the combining it with frameworks for Large Language Models (LLMs) e.g. BioCypher [@citesAsPotentialSolution:Lobentanzer_2023] to create a user friedly chat client and provide the end user an intuitive platform to get access to the explored connections and the contained knowledge.
+
+# Acknowledgements
+
+This work was performed during the ELIXIR BioHackathon Europe 2023 organized by ELIXIR in November 2023. 
+This work was supported by the German Research Foundation (DFG) within the project “Establishment of the National Research Data Infrastructure (NFDI)” in the consortium FAIRagro (www.fairagro.net, project number 501899475) and NFDI4Biodiversity (www.nfdi4biodiversity.org, project number 442032008).
+
+
+# References
+
+# Appendix A
+
+A docker-compose setup to spin-up a local Knowledge Graph instance.
+
+docker-compose.yml
+```yml
+version: '3.8'
+services:
+  proxy:
+    image: jc21/nginx-proxy-manager:latest
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+      - 81:81
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+  graphdb:
+    image: ontotext/graphdb:10.4.0
+    ports:
+      - 7200:7200
+      - 7300:7300
+    restart: unless-stopped
+    command:
+      - -Dgraphdb.home=/opt/graphdb/home
+      - -Dgraphdb.workbench.cors.enable=true
+      - -Dgraphdb.workbench.cors.origin=*
+      - -Dgraphdb.append.request.id.headers=true
+      - -Dgraphdb.workbench.importDirectory=/opt/graphdb/home/graphdb-import
+      - -Dhealth.max.query.time.seconds=60
+      - -Dreuse.vars.in.subselects=true
+    volumes:
+      - ./graphdb-home:/opt/graphdb/home
+```
