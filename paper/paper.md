@@ -12,31 +12,29 @@ authors:
   - name: Daniel Arend
     orcid: 0000-0002-2455-5938
     affiliation: 1
-  - name: Marco Brandizi
-    affiliation: 1
   - name: Alessio Del Conte  
     orcid: 0000-0002-8052-3519
-    affiliation: 3
+    affiliation: 2
   - name: Manuel Feser
     orcid: 0000-0001-6546-1818
     affiliation: 1
   - name: Yojana Gadiya
-    affiliation: 12, 13
+    affiliation: 11,12
     orcid: 0000-0002-7683-0452
   - name: Alban Gaignard
     affiliation: 1
   - name: Leyla Jael Castro
     orcid: 0000-0003-3986-0510
-    affiliation: 4
+    affiliation: 3
   - name: Ivan Mičetić
     orcid: 0000-0003-1691-8425
-    affiliation: 3
+    affiliation: 2
   - name: Sebastien Moretti
     orcid: 0000-0003-3947-488X
-    affiliation: 7,8
+    affiliation: 6,7
   - name: Steffen Neumann
     orcid: 0000-0002-7899-7192
-    affiliation: 5,6
+    affiliation: 4,5
   - name: Noura Rayya
     affiliation: 1
   - name: Claire Rioualen
@@ -45,40 +43,38 @@ authors:
     affiliation: 1
   - name: Ginger Tsueng
     orcid: 0000-0001-9536-9115
-    affiliation: 10
+    affiliation: 9
   - name: Egon Willighagen
     orcid: 0000-0001-7542-0286
-    affiliation: 9
+    affiliation: 8
   - name: Ulrike Wittig
     orcid: 0000-0002-9077-5664
-    affiliation: 11
+    affiliation: 10
 affiliations:
   - name: Leibniz Institute for Plant Genetics and Crop Plant Research (IPK) Gatersleben, Germany
     index: 1
-  - name: Second Affiliation
-    index: 2
   - name: Department of Biomedical Sciences, University of Padua
-    index: 3
+    index: 2
   - name: ZB MED Information Centre for Life Sciences
-    index: 4    
+    index: 3    
   - name: Leibniz Institute of Plant Biochemistry (IPB)
-    index: 5
+    index: 4
   - name: German Centre for Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig
-    index: 6
+    index: 5
   - name: SIB Swiss Institute of Bioinformatics, Vital-IT group, Lausanne
-    index: 7
+    index: 6
   - name: Department of Ecology and Evolution, University of Lausanne
-    index: 8
+    index: 7
   - name: Department of Bioinformatics - BiGCaT, NUTRIM, Maastricht University
-    index: 9
+    index: 8
   - name: The Scripps Research Institute
-    index: 10
+    index: 9
   - name: Heidelberg Institute for Theoretical Studies, Heidelberg, Germany
-    index: 11
+    index: 10
   - name: Fraunhofer Institute for Translational Medicine and Pharmacology, Germany
-    index: 12
+    index: 11
   - name: Bonn-Aachen International Center for Information Technology (B-IT), University of Bonn, 53113 Bonn, Germany
-    index: 13
+    index: 12
 date: 8 November 2023
 cito-bibliography: paper.bib
 event: BH23EU
@@ -101,7 +97,7 @@ As part of the BioHackathon Europe 2023, we here report on the progress of the h
 
 The JSON-LD from multiple resources can be imported into either central or distributed SPARQL endpoints to provide queries against multiple data sources. While incorporating Bioschemas markup to a resource is fairly lightweight, adding and maintaining a SPARQL endpoint to a resource can be challenging. 
 
-This project builds upon previous work done by the [Intrinsically Disordered Protein (IDP)](https://elixir-europe.org/communities/intrinsically-disordered-proteins) Community in aggregating Bioschemas markup and constructing the IDP knowledge graph, which served as the basis for the IDPcentral registry ([@citesAsAuthority:Gray_2022], [@citesAsAuthority:Gray_2021], [@citesAsAuthority:Ammar_2022]). During these efforts, we used different approaches for data integration, but always based on Bioschemas implementation from one provider. In the project reported here, we are using the JSON-LD from different providers with their own Bioschemas implementations.
+This project builds upon previous work done by the [Intrinsically Disordered Protein (IDP)](https://elixir-europe.org/communities/intrinsically-disordered-proteins) Community in aggregating Bioschemas markup and constructing the IDP knowledge graph, which served as the basis for the IDPcentral registry ([@citesAsAuthority:Gray_2022;@citesAsAuthority:Gray_2021;@citesAsAuthority:Ammar_2022]). During these efforts, we used different approaches for data integration, but always based on Bioschemas implementation from one provider. In the project reported here, we are using the JSON-LD from different providers with their own Bioschemas implementations.
 
 # Material and Methods
 
@@ -156,32 +152,32 @@ JSON-LD datadumps were prepared for a selection of databases from the plant scie
 
 Here there are some examples queries to the chem and plants knowledge graph making use of the connection between both data domains.
 
-#### Which resources mention the compound caffeine?
+### Which resources mention the compound caffeine?
 ```sparql
 PREFIX schema: <http://schema.org/>
 SELECT ?resource WHERE {
-    GRAPH ?resource {
-		?entry schema:inChIKey ?key .
-    }
-    BIND("RYYVLZVUVIJVGH-UHFFFAOYSA-N" as ?caffeineChIKey)
-    FILTER (?key = ?caffeineChIKey)
+  GRAPH ?resource {
+    ?entry schema:inChIKey ?key .
+  }
+  BIND("RYYVLZVUVIJVGH-UHFFFAOYSA-N" as ?caffeineChIKey)
+  FILTER (?key = ?caffeineChIKey)
 } 
 LIMIT 100 
 ```
-#### Count the number of entries per resource talking about caffeine:
+### Count the number of entries per resource talking about caffeine:
 ```sparql
 PREFIX schema: <http://schema.org/>
 SELECT ?resource (COUNT(?entry) as ?entriesAboutCoffe) WHERE {
-    GRAPH ?resource {
-		?entry schema:inChIKey ?key .
-    }
-    BIND("RYYVLZVUVIJVGH-UHFFFAOYSA-N" as ?caffeineChIKey)
-    FILTER (?key = ?caffeineChIKey)
+  GRAPH ?resource {
+    ?entry schema:inChIKey ?key .
+  }
+  BIND("RYYVLZVUVIJVGH-UHFFFAOYSA-N" as ?caffeineChIKey)
+  FILTER (?key = ?caffeineChIKey)
 } 
 GROUP BY ?resource
 LIMIT 100
 ```
-#### List chemical pathways in plants:
+### List chemical pathways in plants:
 ```sparql
 PREFIX biohack23: <https://biohack2023/>
 PREFIX schema: <http://schema.org/>
@@ -190,36 +186,38 @@ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT DISTINCT  ?pathway ?organismName 
 WHERE {
-    GRAPH biohack23:wikipathways {
-        ?pathway a schema:Dataset ;
-                 schema:taxonomicRange ?taxon .
-    }
-    {
-        SELECT DISTINCT ?taxon ?organismName ?commonName ?ncbiURI
+  GRAPH biohack23:wikipathways {
+    ?pathway a schema:Dataset ;
+      schema:taxonomicRange ?taxon .
+  }
+  {
+    SELECT DISTINCT ?taxon ?organismName ?commonName ?ncbiURI
+    WHERE {
+      {
+        SELECT distinct ?taxon ?ncbiURI
         WHERE {
-            {
-                SELECT distinct ?taxon ?ncbiURI
-                WHERE {
-                    GRAPH biohack23:wikipathways {
-                        ?x schema:taxonomicRange ?taxon .
-                        BIND(STRAFTER(STR(?taxon), "_") AS ?ncbi)
-                        BIND(URI(CONCAT("http://purl.uniprot.org/taxonomy/" ,?ncbi)) AS ?ncbiURI)
-                    }
-                } 
-            }
-            SERVICE <https://sparql.uniprot.org/sparql> {
-                ?ncbiURI up:scientificName ?organismName ;
-                         up:commonName ?commonName .
-                # Taxon subclasses are materialized, do not use rdfs:subClassOf+
-                FILTER EXISTS {
-                    ?ncbiURI rdfs:subClassOf taxon:33090 .
-                }
-            }
+          GRAPH biohack23:wikipathways {
+            ?x schema:taxonomicRange ?taxon .
+            BIND(STRAFTER(STR(?taxon), "_") AS ?ncbi)
+            BIND(URI(CONCAT(
+              "http://purl.uniprot.org/taxonomy/" ,?ncbi))
+              AS ?ncbiURI)
+          }
+        } 
+      }
+      SERVICE <https://sparql.uniprot.org/sparql> {
+        ?ncbiURI up:scientificName ?organismName ;
+          up:commonName ?commonName .
+        # Taxon subclasses are materialized, do not use rdfs:subClassOf+
+        FILTER EXISTS {
+          ?ncbiURI rdfs:subClassOf taxon:33090 .
         }
+      }
     }
+  }
 }
 ```
-#### List compounds per plant pathway:
+### List compounds per plant pathway:
 ```sparql
 PREFIX biohack23: <https://biohack2023/>
 PREFIX schema: <http://schema.org/>
@@ -228,38 +226,40 @@ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT DISTINCT ?pathway ?organismName ?molecule 
 WHERE {
-    GRAPH biohack23:wikipathways {
-        ?pathway a schema:Dataset ;
-                 schema:taxonomicRange ?taxon .
-        ?molecule a schema:MolecularEntity ;
-                  schema:includedInDataset ?pathway .
-    }
-    {
-        SELECT DISTINCT ?taxon ?organismName ?commonName ?ncbiURI
+  GRAPH biohack23:wikipathways {
+    ?pathway a schema:Dataset ;
+      schema:taxonomicRange ?taxon .
+    ?molecule a schema:MolecularEntity ;
+      schema:includedInDataset ?pathway .
+  }
+  {
+    SELECT DISTINCT ?taxon ?organismName ?commonName ?ncbiURI
+    WHERE {
+      {
+        SELECT distinct ?taxon ?ncbiURI
         WHERE {
-            {
-                SELECT distinct ?taxon ?ncbiURI
-                WHERE {
-                    GRAPH biohack23:wikipathways {
-                        ?x schema:taxonomicRange ?taxon .
-                        BIND(STRAFTER(STR(?taxon), "_") AS ?ncbi)
-                        BIND(URI(CONCAT("http://purl.uniprot.org/taxonomy/" ,?ncbi)) AS ?ncbiURI)
-                    }
-                } 
-            }
-            SERVICE <https://sparql.uniprot.org/sparql> {
-                ?ncbiURI up:scientificName ?organismName ;
-                         up:commonName ?commonName .
-                # Taxon subclasses are materialized, do not use rdfs:subClassOf+
-                FILTER EXISTS {
-                    ?ncbiURI rdfs:subClassOf taxon:33090 .
-                }
-            }
+          GRAPH biohack23:wikipathways {
+            ?x schema:taxonomicRange ?taxon .
+            BIND(STRAFTER(STR(?taxon), "_") AS ?ncbi)
+            BIND(URI(CONCAT(
+              "http://purl.uniprot.org/taxonomy/" ,?ncbi))
+              AS ?ncbiURI)
+          }
+        } 
+      }
+      SERVICE <https://sparql.uniprot.org/sparql> {
+        ?ncbiURI up:scientificName ?organismName ;
+          up:commonName ?commonName .
+        # Taxon subclasses are materialized, do not use rdfs:subClassOf+
+        FILTER EXISTS {
+          ?ncbiURI rdfs:subClassOf taxon:33090 .
         }
-    }
+      }
+   }
+  }
 }
 ```
-#### Molecular entities in pathways of plant resources
+### Molecular entities in pathways of plant resources:
 ```sparql
 PREFIX biohack23: <https://biohack2023/>
 PREFIX schema: <http://schema.org/>
@@ -268,47 +268,49 @@ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT DISTINCT ?pathway ?organismName ?molecule ?resource ?property ?object
 WHERE {
-    GRAPH biohack23:wikipathways {
-        ?pathway a schema:Dataset ;
-                 schema:taxonomicRange ?taxon .
-        ?molecule a schema:MolecularEntity ;
-                  schema:inChIKey ?key ;
-                  schema:includedInDataset ?pathway .
-    }
-    {
-        SELECT DISTINCT ?taxon ?organismName ?commonName ?ncbiURI
+  GRAPH biohack23:wikipathways {
+    ?pathway a schema:Dataset ;
+      schema:taxonomicRange ?taxon .
+    ?molecule a schema:MolecularEntity ;
+      schema:inChIKey ?key ;
+      schema:includedInDataset ?pathway .
+  }
+  {
+    SELECT DISTINCT ?taxon ?organismName ?commonName ?ncbiURI
+    WHERE {
+      {
+        SELECT distinct ?taxon ?ncbiURI
         WHERE {
-            {
-                SELECT distinct ?taxon ?ncbiURI
-                WHERE {
-                    GRAPH biohack23:wikipathways {
-                        ?x schema:taxonomicRange ?taxon .
-                        BIND(STRAFTER(STR(?taxon), "_") AS ?ncbi)
-                        BIND(URI(CONCAT("http://purl.uniprot.org/taxonomy/" ,?ncbi)) AS ?ncbiURI)
-                    }
-                } 
-            }
-            SERVICE <https://sparql.uniprot.org/sparql> {
-                ?ncbiURI up:scientificName ?organismName ;
-                         up:commonName ?commonName .
-                FILTER EXISTS {
-                    ?ncbiURI rdfs:subClassOf taxon:33090 .
-                }
-            }
+          GRAPH biohack23:wikipathways {
+            ?x schema:taxonomicRange ?taxon .
+            BIND(STRAFTER(STR(?taxon), "_") AS ?ncbi)
+            BIND(URI(CONCAT(
+              "http://purl.uniprot.org/taxonomy/" ,?ncbi))
+              AS ?ncbiURI)
+          }
+        } 
+      }
+      SERVICE <https://sparql.uniprot.org/sparql> {
+        ?ncbiURI up:scientificName ?organismName ;
+          up:commonName ?commonName .
+        FILTER EXISTS {
+          ?ncbiURI rdfs:subClassOf taxon:33090 .
         }
+      }
     }
+  }
+  {
     {
-        {
-            GRAPH ?resource {
-                ?x schema:inChIKey ?key ;
-                   ?property ?object .
-            }
-        } MINUS {
-            GRAPH biohack23:wikipathways {
-                ?x schema:inChIKey ?key .
-            }
-        }
+      GRAPH ?resource {
+        ?x schema:inChIKey ?key ;
+          ?property ?object .
+      }
+    } MINUS {
+      GRAPH biohack23:wikipathways {
+        ?x schema:inChIKey ?key .
+      }
     }
+  }
 }
 ```
 
@@ -321,8 +323,8 @@ We conducted surveys based on the list of `exampleURL` on the Bioschemas Live-de
 Additionally, there may be controlled vocabularies in use that are not formalized into an ontology. In such cases, there may not be a suitable IRI and additional information would be needed. For example, the ClinicalTrials.gov's Protocol Registration and Results System (PRS) Schema has controlled vocabulary used as values for many properties in their own codebook, but these terms are not necessarily in a formal ontology. In this case, it is important to leverage the `DefinedTermSet` profile to ensure sufficient information is included for provenance.
 
 # Howto
-> [name=Daniel Arend]
-> Ivan / Alessio could you please insert the short guideline / howto you mentioned ? And the docker setup...
+
+A working demo of the plant and chemistry knowledge graph can be replicated by importing a selection of [data dumps](https://github.com/elixir-europe/biohackathon-projects-2023/tree/main/7/Chem-Plants-KG) directly in a running instance of GraphDB. A Docker Compose file is provided in appendix A for convenience. Upon instantiation of GraphDB a new repository must be generated. In the repository, datadumps in turtle format should be imported as named graphs with URIs in the form `https://biohack2023/<resource>`. After the import of RDF data, SPARQL queries can be run directly with the SPARQL Query & Update interface through the UI or programmatically at the SPARQL endpoint `http://localhost:7200/repositories/<repository name>`.
 
 # Discussion
 
@@ -332,7 +334,7 @@ We spend a lot of time in curating the datadumps and add additional properties o
 
 # Outlook
 
-Beside the extraction and curation of the resource datadumps, we also drafted a howto explaining the set-up of a local instance of a graph database and how to equip it with datadumps based on schema.org / BioSchemas. We will get in touch with the editors of RDMKit and FAIR Cookbook to evaluate if this is valuable for writing an entry [@citesAsPotentialSolution:Rocca2023FAIR]. Another interesting idea for future work and to get more out of the developed knowledge graphs is using synergies from the combining it with frameworks for Large Language Models (LLMs) e.g. BioCypher [@citesAsPotentialSolution:Lobentanzer_2023] to create a user friedly chat client and provide the end user an intuitive platform to get access to the explored connections and the contained knowledge.
+Beside the extraction and curation of the resource datadumps, we also drafted a howto explaining the set-up of a local instance of a graph database and how to equip it with datadumps based on schema.org / Bioschemas. We will get in touch with the editors of RDMKit and FAIR Cookbook to evaluate if this is valuable for writing an entry [@citesAsPotentialSolution:Rocca2023FAIR]. Another interesting idea for future work and to get more out of the developed knowledge graphs is using synergies from the combining it with frameworks for Large Language Models (LLMs) e.g. BioCypher [@citesAsPotentialSolution:Lobentanzer_2023] to create a user friendly chat client and provide the end user an intuitive platform to get access to the explored connections and the contained knowledge.
 
 # Acknowledgements
 
@@ -348,18 +350,8 @@ A docker-compose setup to spin-up a local Knowledge Graph instance.
 
 docker-compose.yml
 ```yml
-version: '3.8'
+version: '1.0'
 services:
-  proxy:
-    image: jc21/nginx-proxy-manager:latest
-    restart: unless-stopped
-    ports:
-      - 80:80
-      - 443:443
-      - 81:81
-    volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsencrypt
   graphdb:
     image: ontotext/graphdb:10.4.0
     ports:
