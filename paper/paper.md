@@ -139,12 +139,12 @@ SABIO-RK [@citesAsDataSource:citesAsAuthority:Wittig_2018] is a manually curated
 ## JSON-LD datadumps
 JSON-LD datadumps were prepared for a selection of databases from the plant science and (bio-)chemistry domains. 
 
-|Resource|Description| DataDump 
-|-|-|-|
+|**Resource**|**Description**| **DataDump**
+|------------|------------------------------------------------------------|----------------|
 |[COCONUT](https://coconut.naturalproducts.net/)|Database of natural products | [coconut.ttl]([coconut.ttl](https://github.com/elixir-europe/biohackathon-projects-2023/blob/main/7/Chem-Plants-KG/coconut.ttl))           |
-| [e!DAL-PGP](https://edal-pgp.ipk-gatersleben.de/) | e!DAL - Plant Genomics & Phenomics Research Data Repository | [edal.ttl]([edal.ttl](https://github.com/elixir-europe/biohackathon-projects-2023/blob/main/7/Chem-Plants-KG/edal.ttl))                 |
+| [e!DAL-PGP](https://edal-pgp.ipk-gatersleben.de/) | Repository for plant genomics & phenomics data | [edal.ttl]([edal.ttl](https://github.com/elixir-europe/biohackathon-projects-2023/blob/main/7/Chem-Plants-KG/edal.ttl))                 |
 | [MassBank](https://massbank.eu/)     | Mass spectra database                                                     | [massbank.ttl]([massbank.ttl](https://github.com/elixir-europe/biohackathon-projects-2023/blob/main/7/Chem-Plants-KG/massbank.ttl))         |
-| [MetaNetX](https://www.metanetx.org/)     | Platform for genome annotation and large-scale metabolic network analysis | [metanetx.ttl]([metanetx.ttl](https://github.com/elixir-europe/biohackathon-projects-2023/blob/main/7/Chem-Plants-KG/metanetx.ttl))         |
+| [MetaNetX](https://www.metanetx.org/)     | Resource for genome annotation & metabolic network analysis | [metanetx.ttl]([metanetx.ttl](https://github.com/elixir-europe/biohackathon-projects-2023/blob/main/7/Chem-Plants-KG/metanetx.ttl))         |
 | [nmrXiv](https://nmrxiv.org/)       | NMR spectroscopy data repository                                           | [nmrxiv.ttl]([nmrxiv.ttl](https://github.com/elixir-europe/biohackathon-projects-2023/blob/main/7/Chem-Plants-KG/nmrxiv.ttl))             |
 | [WikiPathways](https://www.wikipathways.org/)| Platform for biological pathways                                          |  [wikipathways.ttl]([wikipathways.ttl](https://github.com/elixir-europe/biohackathon-projects-2023/blob/main/7/Chem-Plants-KG/wikipathways.ttl)) |
 | [SABIO-RK](https://sabiork.h-its.org/) | Biochemical Reaction Kinetics Database |  [sabio-rk.ttl]([sabio-rk.ttl](https://github.com/elixir-europe/biohackathon-projects-2023/blob/main/7/Chem-Plants-KG/sabio-rk.ttl)) |
