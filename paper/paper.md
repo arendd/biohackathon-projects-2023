@@ -91,8 +91,6 @@ authors_short: Daniel Arend \emph{et al.} **all authors are in alphabetical orde
 # Introduction
 As part of the BioHackathon Europe 2023, we here report on the progress of the hacking team preparing a resource index and knowledge graph based on the JSON-LD Bioschemas markup from several resources in the life- and natural sciences, predominantly from the fields of plant- and (bio)chemistry research. This preliminary analysis will allow us to better understand how Bioschemas markup is currently used in these two communities, so we can take actions to improve guidelines and validation on the Bioschemas side, and markup and the data providers side. The lessons learnt will be useful for other communities as well. The ultimate goal is facilitating and improving interoperability across resources. 
 
-<!-- Guha_2016 is doi:10.1145/2844544 -->
-
 [Bioschemas](https://bioschemas.org/)[@citesAsAuthority:Gray_2017] is a community-based effort providing specifications, tools and training on how to add structured markup on webpages in Life Sciences. It builds on top of [schema.org](https://schema.org/) [@usesMethodIn:Guha_2016] by providing new types and profiles relevant for Life Sciences, i.e., type usage recommendations, useful to describe Life Sciences concepts (e.g., taxa or chemicals) but also and research outcomes in general (e.g., datasets or software). Although Bioschemas main aim is to facilitate findability, it also provides an initial interoperability layer. 
 
 The JSON-LD from multiple resources can be imported into either central or distributed SPARQL endpoints to provide queries against multiple data sources. While incorporating Bioschemas markup to a resource is fairly lightweight, adding and maintaining a SPARQL endpoint to a resource can be challenging. 
@@ -105,13 +103,14 @@ The following is a brief introduction of the components, linked data sources and
 
 ## Knowledge Graphs
 
-We used both local developer instances and a publicly accessible demo site hosted in a cloud-based virtual machine. A public instance of GraphDB with the Chem and Plants knowledge graph is available at knowledge.ipk-gatersleben.de (login/password: demo/demo).
+We used both local developer instances and a publicly accessible demo site hosted in a cloud-based virtual machine. A public instance of GraphDB with the Chem and Plants knowledge graph is available at [https://knowledge.ipk-gatersleben.de](https://knowledge.ipk-gatersleben.de) (login/password: demo/demo).
 
 ## Data Sources
 
 We initially agreed on extracting reduced file dumps containing Bioschemas markup formatted as JSON-LD for six selected repositories or databases. During the week at the BioHackathon we were able to get in touch with other people interested in this project and add an additional resource to our set. Subsequently, the seven different resource are shortly described. 
 
-### Coconut
+### COCONUT
+COCONUT [@citesAsAuthority:Sorokina_2021], short for COlleCtion of Open Natural ProdUcTs, is an online database that aggregates elucidated and predicted natural products (NPs) from open sources. It is a free and open-source project that aims to simplify NP research by providing a centralized resource for all known NPs. It is accessible through a web interface that allows users to browse, search, and download NPs easily and quickly. COCONUT is one of the largest and best-annotated resources for NPs available free of charge and without any restriction. It is an aggregated dataset of NPs collected from various sources, including microbial and plant-produced compounds. The data stock is constantly growing and is well-annotated, making it an excellent resource for computational screening and other in silico applications. 
 
 ### e!DAL-PGP
 The e!DAL-PGP (Plant Genomics and Phenomics Research Data Repository) is an infrastructure to comprehensively publish plant research data. This covers in particular cross-domain datasets that are not being published in central repositories because of its volume or unsupported data scope, like image collections from plant phenotyping and microscopy, unfinished genomes, genotyping data, visualizations of morphological plant models, data from mass spectrometry as well as software and documents. All published datasets are accessible via a DOI linking to a dedicated content page, which embeds a schema.org and BioSchema markup in the HTML code. Currently, it supports the `Dataset` and `Taxon` profiles.
@@ -123,6 +122,8 @@ MassBank [@citesAsAuthority:Horai_2010] is an open spectral database that provid
 MetaNetX [@citesAsAuthority:Moretti_2021] is an open resource unifying metabolites and biochemical reactions, in the context of metabolic models, in a common namespace. MetaNetX provides bioschemas markup for each metabolite record as `MolecularEntity` with structural information (i.e. InChI, SMILES and InChIKey) and cross-references. A SPARQL endpoint is also available. A datadump of the JSON-LD information is part of the data releases.
 
 ### nmrXiv
+
+nmrXiv is a free and open-source platform that provides a ready-to-use NMR data management system for hosting raw instrument data and processed files. The platform also offers tools and services for analyzing data and community support for any NMR spectra-related queries. The ultimate goal of nmrXiv is to accelerate broader coordination and data sharing among natural product researchers by enabling storage, management, sharing, and analysis of NMR data.
 
 ### WikiPathways
 WikiPathways already used Bioschemas on their website and modelled each pathway as a `Dataset` [@citesAsDataSource:citesAsAuthority:Agrawal_2023]. Genes, proteins, and metabolites 
@@ -138,15 +139,15 @@ SABIO-RK [@citesAsDataSource:citesAsAuthority:Wittig_2018] is a manually curated
 ## JSON-LD datadumps
 JSON-LD datadumps were prepared for a selection of databases from the plant science and (bio-)chemistry domains. 
 
- | Resource     | Description                                                               | Import as named graph            | File                                 |
-|--------------|---------------------------------------------------------------------------|----------------------------------|--------------------------------------|
-| [Coconut](https://coconut.naturalproducts.net/)      | Database of natural products                                              | https://biohack2023/coconut      | [coconut.ttl](coconut.ttl)           |
-| [e!DAL-PGP](https://edal-pgp.ipk-gatersleben.de/)     | e!DAL - Plant Genomics & Phenomics Research Data Repository               | https://biohack2023/edal         | [edal.ttl](edal.ttl)                 |
-| [MassBank](https://massbank.eu/)     | Mass spectra database                                                     | https://biohack2023/massbank     | [massbank.ttl](massbank.ttl)         |
-| [MetaNetX](https://www.metanetx.org/)     | Platform for genome annotation and large-scale metabolic network analysis | https://biohack2023/metanetx     | [metanetx.ttl](metanetx.ttl)         |
-| [nmrXiv](https://nmrxiv.org/)       | NMR spectroscopy data repository                                          | https://biohack2023/nmrxiv       | [nmrxiv.ttl](nmrxiv.ttl)             |
-| [WikiPathways](https://www.wikipathways.org/)| Platform for biological pathways                                          | https://biohack2023/wikipathways | [wikipathways.ttl](wikipathways.ttl) |
-| [SABIO-RK](https://sabiork.h-its.org/) | Biochemical Reaction Kinetics Database | https://biohack2023/sabio-rk | [sabio-rk.ttl](sabio-rk.ttl) |
+|Resource|Description| DataDump 
+|-|-|-|
+|[COCONUT](https://coconut.naturalproducts.net/)|Database of natural products | [coconut.ttl]([coconut.ttl](https://github.com/elixir-europe/biohackathon-projects-2023/blob/main/7/Chem-Plants-KG/coconut.ttl))           |
+| [e!DAL-PGP](https://edal-pgp.ipk-gatersleben.de/) | e!DAL - Plant Genomics & Phenomics Research Data Repository | [edal.ttl]([edal.ttl](https://github.com/elixir-europe/biohackathon-projects-2023/blob/main/7/Chem-Plants-KG/edal.ttl))                 |
+| [MassBank](https://massbank.eu/)     | Mass spectra database                                                     | [massbank.ttl]([massbank.ttl](https://github.com/elixir-europe/biohackathon-projects-2023/blob/main/7/Chem-Plants-KG/massbank.ttl))         |
+| [MetaNetX](https://www.metanetx.org/)     | Platform for genome annotation and large-scale metabolic network analysis | [metanetx.ttl]([metanetx.ttl](https://github.com/elixir-europe/biohackathon-projects-2023/blob/main/7/Chem-Plants-KG/metanetx.ttl))         |
+| [nmrXiv](https://nmrxiv.org/)       | NMR spectroscopy data repository                                           | [nmrxiv.ttl]([nmrxiv.ttl](https://github.com/elixir-europe/biohackathon-projects-2023/blob/main/7/Chem-Plants-KG/nmrxiv.ttl))             |
+| [WikiPathways](https://www.wikipathways.org/)| Platform for biological pathways                                          |  [wikipathways.ttl]([wikipathways.ttl](https://github.com/elixir-europe/biohackathon-projects-2023/blob/main/7/Chem-Plants-KG/wikipathways.ttl)) |
+| [SABIO-RK](https://sabiork.h-its.org/) | Biochemical Reaction Kinetics Database |  [sabio-rk.ttl]([sabio-rk.ttl](https://github.com/elixir-europe/biohackathon-projects-2023/blob/main/7/Chem-Plants-KG/sabio-rk.ttl)) |
 
 ## Example SPARQL queries for Chem and Plants KG:
 
